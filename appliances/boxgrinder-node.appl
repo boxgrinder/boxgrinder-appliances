@@ -1,0 +1,14 @@
+name: boxgrinder-node
+summary: BoxGrinder Node for executing task
+version: 1
+release: 0
+hardware:
+  memory: 1024
+  partitions:
+    "/":
+      size: 10
+appliances:
+  - boxgrinder-base
+packages:
+  includes:
+    - boxgrinder-node

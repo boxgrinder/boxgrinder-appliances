@@ -1,0 +1,41 @@
+name: boxgrinder-base
+summary: Appliance template for BoxGrinder appliances
+os:
+  name: centos
+  version: 5
+hardware:
+  memory: 256
+  partitions:
+    "/":
+      size: 1
+packages:
+  includes:
+    - bash
+    - kernel
+    - grub
+    - e2fsprogs
+    - passwd
+    - policycoreutils
+    - chkconfig
+    - rootfiles
+    - yum
+    - vim-minimal
+    - acpid
+    - dhclient
+    - iputils
+    - openssh-server
+    - openssh-clients
+    - mkinitrd
+    - which
+    - sudo
+    - ruby-devel
+    - make
+    - gcc-c++
+    - wget
+repos:
+  - name: "boxgrinder-#ARCH#"
+    baseurl: "http://repo.boxgrinder.org/boxgrinder/packages/#OS_NAME#/#OS_VERSION#/RPMS/#ARCH#"
+  - name: "boxgrinder-noarch"
+    baseurl: "http://repo.boxgrinder.org/boxgrinder/packages/#OS_NAME#/#OS_VERSION#/RPMS/noarch"
+  - name: "epel"
+    mirrorlist: "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-5&arch=#ARCH#"

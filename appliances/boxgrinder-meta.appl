@@ -1,0 +1,28 @@
+name: boxgrinder-meta
+summary: Environment for building new appliances using BoxGrinder
+version: 1
+release: 2
+hardware:
+  memory: 1024
+  partitions:
+    "/":
+      size: 10
+appliances:
+  - boxgrinder-base
+packages:
+  includes:
+    - rubygems
+    - git
+    - parted
+    - rpmdevtools
+    - appliance-tools
+    - sudo
+    - libguestfs 
+    - ruby-libguestfs
+    - guestfish
+    - yum-utils
+    - e2fsprogs
+    - ec2-ami-tools
+post:
+  base:
+    - "/bin/echo 'gem install --no-rdoc --no-ri boxgrinder-build boxgrinder-build-fedora-os-plugin boxgrinder-build-rhel-os-plugin boxgrinder-build-centos-os-plugin boxgrinder-build-ec2-platform-plugin boxgrinder-build-vmware-platform-plugin boxgrinder-build-s3-delivery-plugin boxgrinder-build-sftp-delivery-plugin boxgrinder-build-local-delivery-plugin boxgrinder-build-ebs-delivery-plugin' >> /etc/rc.local"

@@ -1,0 +1,20 @@
+name: boxgrinder-rest
+summary: BoxGrinder REST service
+version: 1
+release: 0
+hardware:
+  memory: 512
+  partitions:
+    "/":
+      size: 2
+appliances:
+  - boxgrinder-base
+packages:
+  includes:
+    - boxgrinder-rest
+post:
+  base:
+    - "/sbin/chkconfig postgresql on"
+    - "/sbin/service postgresql initdb"
+    - "/bin/sed -i s/'^host'/'# host'/g /var/lib/pgsql/data/pg_hba.conf"
+    - "/bin/echo 'host    rhq         rhq         127.0.0.1/32          md5' >> /var/lib/pgsql/data/pg_hba.conf"
