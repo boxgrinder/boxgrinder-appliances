@@ -23,6 +23,16 @@ packages:
     - yum-utils
     - e2fsprogs
     - ec2-ami-tools
+    - rubygem-boxgrinder-build
+    - rubygem-boxgrinder-build-fedora-os-plugin
+    - rubygem-boxgrinder-build-rhel-os-plugin
+    - rubygem-boxgrinder-build-centos-os-plugin
+    - rubygem-boxgrinder-build-ec2-platform-plugin
+    - rubygem-boxgrinder-build-vmware-platform-plugin
+    - rubygem-boxgrinder-build-s3-delivery-plugin
+    - rubygem-boxgrinder-build-sftp-delivery-plugin
+    - rubygem-boxgrinder-build-local-delivery-plugin
+    - rubygem-boxgrinder-build-ebs-delivery-plugin
 post:
   base:
-    - "/bin/echo 'gem install --no-rdoc --no-ri boxgrinder-build boxgrinder-build-fedora-os-plugin boxgrinder-build-rhel-os-plugin boxgrinder-build-centos-os-plugin boxgrinder-build-ec2-platform-plugin boxgrinder-build-vmware-platform-plugin boxgrinder-build-s3-delivery-plugin boxgrinder-build-sftp-delivery-plugin boxgrinder-build-local-delivery-plugin boxgrinder-build-ebs-delivery-plugin' >> /etc/rc.local"
+    - "/bin/echo 'yum -y update rubygem-boxgrinder-build rubygem-boxgrinder-build-fedora-os-plugin rubygem-boxgrinder-build-rhel-os-plugin rubygem-boxgrinder-build-centos-os-plugin rubygem-boxgrinder-build-ec2-platform-plugin rubygem-boxgrinder-build-vmware-platform-plugin rubygem-boxgrinder-build-s3-delivery-plugin rubygem-boxgrinder-build-sftp-delivery-plugin rubygem-boxgrinder-build-local-delivery-plugin rubygem-boxgrinder-build-ebs-delivery-plugin' >> /etc/rc.local"
