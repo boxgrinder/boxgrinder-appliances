@@ -2,7 +2,7 @@ name: boxgrinder-base
 summary: Appliance template for BoxGrinder appliances
 os:
   name: fedora
-  version: 13
+  version: 14
 hardware:
   memory: 256
   partitions:
