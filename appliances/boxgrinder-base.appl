@@ -10,27 +10,9 @@ hardware:
       size: 1
 packages:
   includes:
-    - bash
-    - kernel
-    - grub
-    - e2fsprogs
-    - passwd
-    - policycoreutils
-    - chkconfig
-    - rootfiles
-    - yum
-    - vim-minimal
-    - acpid
-    - dhclient
-    - iputils
-    - generic-logos
-    - openssh-server
+    - @core
     - openssh-clients
     - which
-    - sudo
-    - ruby-devel
-    - make
-    - gcc-c++
     - wget
 repos:
   - name: "boxgrinder-#BASE_ARCH#"
