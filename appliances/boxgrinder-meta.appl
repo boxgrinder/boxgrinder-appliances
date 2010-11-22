@@ -1,7 +1,7 @@
 name: boxgrinder-meta
 summary: Environment for building new appliances using BoxGrinder
 version: 1
-release: 2
+release: 3
 hardware:
   memory: 1024
   partitions:
@@ -11,18 +11,10 @@ appliances:
   - boxgrinder-base
 packages:
   includes:
-    - rubygems
+    - @core
     - git
-    - parted
     - rpmdevtools
-    - appliance-tools
-    - sudo
-    - libguestfs 
-    - ruby-libguestfs
     - guestfish
-    - yum-utils
-    - e2fsprogs
-    - ec2-ami-tools
     - rubygem-boxgrinder-build
     - rubygem-boxgrinder-build-fedora-os-plugin
     - rubygem-boxgrinder-build-rhel-os-plugin
@@ -35,4 +27,4 @@ packages:
     - rubygem-boxgrinder-build-ebs-delivery-plugin
 post:
   base:
-    - "/bin/echo 'yum -y update rubygem-boxgrinder-build rubygem-boxgrinder-build-fedora-os-plugin rubygem-boxgrinder-build-rhel-os-plugin rubygem-boxgrinder-build-centos-os-plugin rubygem-boxgrinder-build-ec2-platform-plugin rubygem-boxgrinder-build-vmware-platform-plugin rubygem-boxgrinder-build-s3-delivery-plugin rubygem-boxgrinder-build-sftp-delivery-plugin rubygem-boxgrinder-build-local-delivery-plugin rubygem-boxgrinder-build-ebs-delivery-plugin' >> /etc/rc.local"
+    - "/bin/echo 'yum -y update rubygem-boxgrinder-*' >> /etc/rc.local"
