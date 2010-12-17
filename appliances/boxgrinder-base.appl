@@ -14,6 +14,9 @@ packages:
     - openssh-clients
     - which
     - wget
+post:
+  base:
+    - "echo -e '[boxgrinder-nightly]\nname=BoxGrinder Nightly builds for Fedora\nbaseurl=http://repo.ci.boxgrinder.org/RPMS/\nenabled=0\ngpgcheck=0' > /etc/yum.repos.d/boxgrinder-nightly.repo"
 repos:
   - name: "boxgrinder-#BASE_ARCH#"
     baseurl: "http://repo.boxgrinder.org/boxgrinder/packages/#OS_NAME#/#OS_VERSION#/RPMS/#BASE_ARCH#"

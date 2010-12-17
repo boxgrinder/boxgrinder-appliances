@@ -11,14 +11,11 @@ appliances:
   - boxgrinder-base
 packages:
   includes:
-    - @core
     - git
     - rpmdevtools
     - guestfish
     - rubygem-boxgrinder-build
     - rubygem-boxgrinder-build-fedora-os-plugin
-    - rubygem-boxgrinder-build-rhel-os-plugin
-    - rubygem-boxgrinder-build-centos-os-plugin
     - rubygem-boxgrinder-build-ec2-platform-plugin
     - rubygem-boxgrinder-build-vmware-platform-plugin
     - rubygem-boxgrinder-build-s3-delivery-plugin
@@ -28,3 +25,9 @@ packages:
 post:
   base:
     - "/bin/echo 'yum -y update rubygem-boxgrinder-*' >> /etc/rc.local"
+repos:
+  - name: "gholms-fedora-cloud"
+    baseurl: "http://repos.fedorapeople.org/repos/gholms/cloud/fedora-#OS_VERSION#/#BASE_ARCH#/"
+    ephemeral: true
+
+
