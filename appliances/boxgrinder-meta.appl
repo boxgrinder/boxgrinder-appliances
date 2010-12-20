@@ -24,10 +24,9 @@ packages:
     - rubygem-boxgrinder-build-ebs-delivery-plugin
 post:
   base:
-    - "/bin/echo 'yum -y update rubygem-boxgrinder-*' >> /etc/rc.local"
+    - "/bin/echo 'yum -y remove rubygem-boxgrinder-*' >> /etc/rc.local"
+    - "/bin/echo 'yum -y install rubygem-boxgrinder-*' >> /etc/rc.local"
 repos:
   - name: "gholms-fedora-cloud"
     baseurl: "http://repos.fedorapeople.org/repos/gholms/cloud/fedora-#OS_VERSION#/#BASE_ARCH#/"
     ephemeral: true
-
-
