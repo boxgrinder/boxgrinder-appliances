@@ -1,7 +1,7 @@
 name: boxgrinder-meta
 summary: Environment for building new appliances using BoxGrinder
 version: 1
-release: 3
+release: 4
 hardware:
   memory: 1024
   partitions:
@@ -10,23 +10,18 @@ hardware:
 appliances:
   - boxgrinder-base
 packages:
-  includes:
-    - git
-    - rpmdevtools
-    - guestfish
-    - rubygem-boxgrinder-build
-    - rubygem-boxgrinder-build-fedora-os-plugin
-    - rubygem-boxgrinder-build-ec2-platform-plugin
-    - rubygem-boxgrinder-build-vmware-platform-plugin
-    - rubygem-boxgrinder-build-s3-delivery-plugin
-    - rubygem-boxgrinder-build-sftp-delivery-plugin
-    - rubygem-boxgrinder-build-local-delivery-plugin
-    - rubygem-boxgrinder-build-ebs-delivery-plugin
+  - git
+  - rpmdevtools
+  - guestfish
+  - rubygem-boxgrinder-build
+  - rubygem-boxgrinder-build-fedora-os-plugin
+  - rubygem-boxgrinder-build-ec2-platform-plugin
+  - rubygem-boxgrinder-build-vmware-platform-plugin
+  - rubygem-boxgrinder-build-s3-delivery-plugin
+  - rubygem-boxgrinder-build-sftp-delivery-plugin
+  - rubygem-boxgrinder-build-local-delivery-plugin
+  - rubygem-boxgrinder-build-ebs-delivery-plugin
 post:
   base:
     - "/bin/echo 'yum -y remove rubygem-boxgrinder-*' >> /etc/rc.local"
     - "/bin/echo 'yum -y install rubygem-boxgrinder-*' >> /etc/rc.local"
-repos:
-  - name: "gholms-fedora-cloud"
-    baseurl: "http://repos.fedorapeople.org/repos/gholms/cloud/fedora-#OS_VERSION#/#BASE_ARCH#/"
-    ephemeral: true
