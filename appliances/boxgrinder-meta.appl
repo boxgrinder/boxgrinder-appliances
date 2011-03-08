@@ -18,5 +18,4 @@ packages:
   - rubygem-boxgrinder-build
 post:
   base:
-    - "/bin/echo 'yum -y remove rubygem-boxgrinder-*' >> /etc/rc.local"
-    - "/bin/echo 'yum -y install rubygem-boxgrinder-*' >> /etc/rc.local"
+    - "/bin/echo 'yum -y update rubygem-boxgrinder-core rubygem-boxgrinder-build' >> /etc/rc.local"
