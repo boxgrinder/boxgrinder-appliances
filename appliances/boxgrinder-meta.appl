@@ -1,10 +1,7 @@
 name: boxgrinder-meta
 summary: Environment for building new appliances using BoxGrinder
 version: 1
-release: 5
-os:
-  name: fedora
-  version: 15
+release: 6
 hardware:
   memory: 1024
   partitions:
@@ -12,7 +9,7 @@ hardware:
       size: 10
 appliances:
   - boxgrinder-base
-packages:
+packages:xsxc
   - createrepo
   - git
   - rpmdevtools
