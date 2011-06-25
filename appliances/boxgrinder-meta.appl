@@ -2,6 +2,9 @@ name: boxgrinder-meta
 summary: Environment for building new appliances using BoxGrinder
 version: 1
 release: 5
+os:
+  name: fedora
+  version: 15
 hardware:
   memory: 1024
   partitions:
@@ -19,4 +22,4 @@ packages:
   - rubygem-boxgrinder-build
 post:
   base:
-    - "/bin/echo 'yum -y update rubygem-boxgrinder-core rubygem-boxgrinder-build' >> /etc/rc.local"
+    - "/bin/echo 'yum -y update rubygem-boxgrinder-core rubygem-boxgrinder-build --enablerepo=\"updates\"' >> /etc/rc.local"
