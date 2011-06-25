@@ -9,7 +9,7 @@ hardware:
       size: 10
 appliances:
   - boxgrinder-base
-packages:xsxc
+packages:
   - createrepo
   - git
   - rpmdevtools
