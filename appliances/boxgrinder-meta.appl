@@ -26,5 +26,3 @@ post:
     - "/usr/bin/curl http://www.vim.org/scripts/download_script.php?src_id=2249 > /root/.vim/yaml.vim"
     - "/bin/echo 'au BufNewFile,BufRead *.appl,*.yaml,*.yml so ~/.vim/yaml.vim' >> /root/.vimrc"
     - "/bin/echo 'syntax on' >> /root/.vimrc"
-    - "/bin/echo 'yum -y update rubygem-boxgrinder-core rubygem-boxgrinder-build --enablerepo=\"updates\"' >> /etc/rc.local"
-
