@@ -19,14 +19,14 @@ packages:
  - mysql
  - mysql-server
 
-repos:
+#repos:
 #I am using an internal mirror, edit to suit your needs
- - name: "CentOS-base"
-   baseurl: "http://192.168.1.30/CentOS/5/os/#BASE_ARCH#/"
- - name: "CentOS-updates"
-   baseurl: "http://192.168.1.30/CentOS/5/updates/#BASE_ARCH#/"
- - name: "CentOS-extras"
-   baseurl: "http://192.168.1.30/CentOS/5/extras/#BASE_ARCH#/"
+# - name: "CentOS-base"
+#   baseurl: "http://oneiroi.local/CentOS/5/os/#BASE_ARCH#/"
+# - name: "CentOS-updates"
+#   baseurl: "http://oneiroi.local/CentOS/5/updates/#BASE_ARCH#/"
+# - name: "CentOS-extras"
+#   baseurl: "http://oneiroi.local/CentOS/5/extras/#BASE_ARCH#/"
 hardware:
  cpus: 2
  memory: 1024
