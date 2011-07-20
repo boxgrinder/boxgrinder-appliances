@@ -10,8 +10,7 @@ hardware:
 appliances:
   - boxgrinder-base
 packages:
-  includes:
-    - boxgrinder-rest
+  - boxgrinder-rest
 post:
   base:
     - "/sbin/chkconfig postgresql on"

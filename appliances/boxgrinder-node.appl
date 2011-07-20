@@ -10,5 +10,4 @@ hardware:
 appliances:
   - boxgrinder-base
 packages:
-  includes:
-    - boxgrinder-node
+  - boxgrinder-node
