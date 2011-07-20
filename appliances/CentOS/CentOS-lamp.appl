@@ -1,0 +1,61 @@
+name: CentOS-lamp
+summary:  Generic CentOS 5.6 LAMP stack, with some apache & php tuning
+version: 1
+release: 0
+packages:
+# apache
+ - httpd
+# php basic
+ - php
+ - php-common
+ - php-mysql
+# php apc
+ - php-pear
+ - php-devel
+# pecl build requirements
+ - gcc
+ - gcc-c++
+# mysql
+ - mysql
+ - mysql-server
+
+repos:
+#I am using an internal mirror, edit to suit your needs
+ - name: "CentOS-base"
+   baseurl: "http://192.168.1.30/CentOS/5/os/#BASE_ARCH#/"
+ - name: "CentOS-updates"
+   baseurl: "http://192.168.1.30/CentOS/5/updates/#BASE_ARCH#/"
+ - name: "CentOS-extras"
+   baseurl: "http://192.168.1.30/CentOS/5/extras/#BASE_ARCH#/"
+hardware:
+ cpus: 2
+ memory: 1024
+ partitions:
+  "/": 
+   size: 5
+  "/var/www":
+   size: 15
+os: 
+ name: centos
+ version: 5
+ password: changeme
+post:
+ base:
+# chkconfig services
+  - "/sbin/chkconfig httpd on"
+  - "/sbin/chkconfig mysqld on"
+# hello world
+  - "/bin/echo '<?PHP echo \"Hello World\"; ?>' > /var/www/html/index.php"
+# php etc. security	- http://www.saiweb.co.uk/security/cloaking-your-web-apps-ninja-vanish
+  - "/bin/echo -e \"<Directory ~ \".svn\">\nOrder allow,deny\nDeny from all\n</Directory>\" > /etc/httpd/conf.d/svn_security.conf"
+  - "[[ -f \"/etc/php.ini\" ]] && sed 's/expose_php.*/expose_php = off/g' /etc/php.ini > /tmp/php.ini && /bin/cat /tmp/php.ini > /etc/php.ini && /bin/unlink /tmp/php.ini"
+# httpd security	- http://www.saiweb.co.uk/security/cloaking-your-web-apps-the-hooded-apache
+  - "sed 's/ServerTokens.*/ServerTokens Prod/' /etc/httpd/conf/httpd.conf | sed 's/ServerSignature.*/ServerSignature Off/' > /tmp/httpd.conf && cat /tmp/httpd.conf > /etc/httpd/conf/httpd.conf && /bin/unlink /tmp/httpd.conf"
+# pecl install apc
+  - "/usr/bin/printf '\n' | /usr/bin/pecl install apc"
+# mysql root password set
+# iptables 
+ vmware:
+  - "echo 'vmware' > /etc/platform"
+ ec2:
+  - "echo 'ec2' > /etc/platform"
