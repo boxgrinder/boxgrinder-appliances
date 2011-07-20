@@ -1,0 +1,14 @@
+name: f15-lxde
+summary: fedora-15 with LXDE                               
+os:
+  name: fedora
+  version: 15
+hardware:
+  partitions:
+    "/":
+      size: 5
+appliances:
+  - _gui_base_systemd
+packages:
+  - @lxde-desktop
+  - @critical-path-lxde

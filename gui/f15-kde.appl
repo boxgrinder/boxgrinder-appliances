@@ -1,0 +1,14 @@
+name: f15-kde
+summary: fedora-15 with KDE                               
+os:
+  name: fedora
+  version: 15
+hardware:
+  partitions:
+    "/":
+      size: 8
+appliances:
+  - _gui_base_systemd
+packages:
+  - @kde-desktop
+  - @critical-path-kde

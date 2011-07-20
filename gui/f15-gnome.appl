@@ -1,0 +1,14 @@
+name: f15-gnome
+summary: fedora-15 with GNOME                               
+os:
+  name: fedora
+  version: 15
+hardware:
+  partitions:
+    "/":
+      size: 8
+appliances:
+  - _gui_base_systemd
+packages:
+  - @gnome-desktop
+  - @critical-path-gnome

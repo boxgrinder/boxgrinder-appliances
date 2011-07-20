@@ -1,0 +1,13 @@
+name: gui-base-systemd
+summary: enable graphical runmode in systemd, this is only for fedora >=15                               
+os:
+  name: dummy
+  version: 15
+packages:
+  - @base
+  - @base-x
+  - @fonts
+post:
+  base:
+    - "ln -s --force /lib/systemd/system/graphical.target /etc/systemd/system/default.target"
+    - "useradd boxgrinder && echo boxgrinder | passwd boxgrinder --stdin" #Please do something more secure for production systems!
