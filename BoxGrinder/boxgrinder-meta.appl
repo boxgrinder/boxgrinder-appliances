@@ -1,7 +1,7 @@
 name: boxgrinder-meta
 summary: Environment for building new appliances using BoxGrinder
 version: 1
-release: 6
+release: 7
 hardware:
   memory: 1024
   partitions:
@@ -18,8 +18,10 @@ packages:
   - rubygem-bundler
   - rubygem-boxgrinder-build
   - vim-enhanced
+  - emacs
 post:
   base:
+    - "yum --nogpg -y install http://repo.boxgrinder.org/boxgrinder/meta/boxgrinder-meta-addins-1-0.noarch.rpm"
     - "/bin/echo 'yum -y update rubygem-boxgrinder-core rubygem-boxgrinder-build --enablerepo=\"updates\"' >> /etc/rc.local"
     # grab and setup yaml syntax highlighting for vim
     - "[[ ! -d '/root/.vim' ]] && /bin/mkdir /root/.vim"
