@@ -1,7 +1,7 @@
 name: boxgrinder-meta
 summary: Environment for building new appliances using BoxGrinder
 version: 1
-release: 7
+release: 7 
 hardware:
   memory: 1024
   partitions:
@@ -28,3 +28,7 @@ post:
     - "/usr/bin/curl http://www.vim.org/scripts/download_script.php?src_id=2249 > /root/.vim/yaml.vim"
     - "/bin/echo 'au BufNewFile,BufRead *.appl,*.yaml,*.yml so ~/.vim/yaml.vim' >> /root/.vimrc"
     - "/bin/echo 'syntax on' >> /root/.vimrc"
+    # setup tab presses to be 2 spaces
+    - "/bin/echo 'set tabstop=2' >> /root/.vimrc"
+    - "/bin/echo 'set shiftwidth=2' >> /root/.vimrc"
+    - "/bin/echo 'set expandtab' >> /root/.vimrc"
