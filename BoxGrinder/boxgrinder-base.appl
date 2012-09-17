@@ -2,7 +2,7 @@ name: boxgrinder-base
 summary: Appliance template for BoxGrinder appliances
 os:
   name: fedora
-  version: 16
+  version: 17
 hardware:
   memory: 256
   partitions:
@@ -13,13 +13,14 @@ packages:
   - openssh-clients
   - which
   - wget
-  - ntp
+  - chrony
 post:
   base:
-    - "echo -e '[boxgrinder-nightly]\nname=BoxGrinder Nightly builds for Fedora\nbaseurl=http://repo.ci.boxgrinder.org/fedora/14/RPMS/\nenabled=0\ngpgcheck=0' > /etc/yum.repos.d/boxgrinder-nightly.repo"
-    - "chkconfig ntpd on"
-repos:
-  - name: "boxgrinder-#BASE_ARCH#"
-    baseurl: "http://repo.boxgrinder.org/boxgrinder/packages/#OS_NAME#/#OS_VERSION#/RPMS/#BASE_ARCH#"
-  - name: "boxgrinder-noarch"
-    baseurl: "http://repo.boxgrinder.org/boxgrinder/packages/#OS_NAME#/#OS_VERSION#/RPMS/noarch"
+    # BoxGrinder Nightly repository
+    - "echo -e '[boxgrinder-nightly]\nname=BoxGrinder Nightly builds for Fedora\nbaseurl=http://repo.ci.boxgrinder.org/fedora/#OS_VERSION#/RPMS/\nenabled=0\ngpgcheck=0' > /etc/yum.repos.d/boxgrinder-nightly.repo"
+    # Enable chronyd time management (replaces ntpd, better for VMs) - note that systemd does not play nicely with lgfs
+    - "ln -s /usr/lib/systemd/system/chronyd.service /etc/systemd/system/multi-user.target.wants/chronyd.service"
+    # Prevent annoying ssh session timeouts
+    - "sed -i -e 's/#ClientAliveInterval 0/ClientAliveInterval 60/' /etc/ssh/sshd_config"
+    # Disable selinux, currently it interferes with BG or shows many confusing messages.
+    - "sed -i -e 's/^SELINUX=.*/SELINUX=disabled/' /etc/selinux/config"

@@ -1,7 +1,7 @@
 name: boxgrinder-meta
 summary: Environment for building new appliances using BoxGrinder
 version: 1
-release: 7 
+release: 9
 hardware:
   memory: 1024
   partitions:
@@ -14,21 +14,23 @@ packages:
   - git
   - rpmdevtools
   - createrepo
-  - guestfish
+  - libguestfs-tools-c
   - rubygem-bundler
   - rubygem-boxgrinder-build
   - vim-enhanced
   - emacs
 post:
   base:
-    - "yum --nogpg -y install http://repo.boxgrinder.org/boxgrinder/meta/boxgrinder-meta-addins-1-0.noarch.rpm"
+    # Meta addins
+    - "yum --nogpg -y install http://repo.boxgrinder.org/boxgrinder/meta/boxgrinder-meta-addins-1-3.noarch.rpm"
+
+    # Update meta at boot
     - "/bin/echo 'yum -y update rubygem-boxgrinder-core rubygem-boxgrinder-build --enablerepo=\"updates\"' >> /etc/rc.local"
-    # grab and setup yaml syntax highlighting for vim
-    - "[[ ! -d '/root/.vim' ]] && /bin/mkdir /root/.vim"
-    - "/usr/bin/curl http://www.vim.org/scripts/download_script.php?src_id=2249 > /root/.vim/yaml.vim"
-    - "/bin/echo 'au BufNewFile,BufRead *.appl,*.yaml,*.yml so ~/.vim/yaml.vim' >> /root/.vimrc"
-    - "/bin/echo 'syntax on' >> /root/.vimrc"
-    # setup tab presses to be 2 spaces
-    - "/bin/echo 'set tabstop=2' >> /root/.vimrc"
-    - "/bin/echo 'set shiftwidth=2' >> /root/.vimrc"
-    - "/bin/echo 'set expandtab' >> /root/.vimrc"
+    
+    # Vim (setup yaml syntax highlighting for Vim)
+    - "curl http://www.vim.org/scripts/download_script.php?src_id=2249 > /usr/share/vim/vimfiles/syntax/yaml.vim"
+    - "curl https://raw.github.com/gist/05d17ba7a28cee061904/1d59d66d43324fe6cf46e4af0f9a3e469e214229/vimrc >> /etc/vimrc"
+   
+    # Emacs (provides customised global defaults, including highlighting and sensible settings for yaml and ruby amongst others)
+    - "cd /usr/share/emacs/site-lisp && git clone https://github.com/dimitri/el-get && cd el-get && git checkout -fq 3.stable && chmod -R ugo+rx ."
+    - "wget https://raw.github.com/gist/d6ec4a117850153d1c8f/71a6276b9d2ae425129da4b60ae0078bebb36592/site-start.el -O /usr/share/emacs/site-lisp/site-start.el"
